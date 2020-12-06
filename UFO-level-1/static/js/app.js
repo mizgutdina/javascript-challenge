@@ -19,17 +19,27 @@ tableData.forEach(function(ufoData) {
     row.append(`td`).text(ufoData.comments)
 })
 
-//Event
+//Event 
+//Get to Filter button
 var button = d3.select(`button`);
 
-buttons.on(`click`, function() {
+//Function when the button is clicked
+button.on(`click`, function() {
     console.log(`You clicked button!`);
-    console.log(d3.event.target)
+    console.log(d3.event.target) //why does it say target of null
 })
 
+//Get to input in the field
 var input = d3.select(`#datetime`);
 
+//Function - typed date in the field
+function inputDate() {
+    var typedText = d3.event.target.value;
+    console.log("Typed date is ", typedText);
+    //how do I add the condition below
+}
 
+input.on(`change`, inputDate)
 
 
 
