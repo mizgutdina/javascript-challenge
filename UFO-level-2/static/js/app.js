@@ -5,9 +5,10 @@ var tableData = data;
 // YOUR CODE HERE!
 //1. Build the table
 //Reference to table body
+
 var tbody = d3.select(`tbody`)
 
-//Loop through data and buld the table - Function Build the Table
+//Function that loop through data and build the table
 function buildTable(data) {
 
     tbody.html("");
@@ -28,20 +29,26 @@ function buildTable(data) {
 buildTable(tableData)
 
 //2. Handle clicks
-//Event 
-//Function Handle click
 
 function handleClick() {
     var input = d3.select(`#datetime`).property(`value`); 
+    var inputCity = d3.select(`#city`).proverty(`value`);
+    var inputState = d3.select(`#state`).proverty(`value`);
+    var inputCountry = d3.select(`#country`).property(`value`);
+    var inputShape = d3.select(`#shape`).property(`value`);
+
     var filteredData = tableData;
     if (input) {
         filteredData = filteredData.filter(rowData => rowData.datetime === input);
     } 
     buildTable(filteredData)
-
+    // if (inputCity) {
+    //     filteredData = filteredData.filter(rowData => rowData.city === inputCity);
+    // }
+    // buildTable(filteredData)
 }
 
+//3. Listen to changes
 
-// 3. Listen to events
 var button = d3.selectAll(`#filter-btn`);
 button.on(`click`, handleClick) 
