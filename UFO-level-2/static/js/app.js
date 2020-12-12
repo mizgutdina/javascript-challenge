@@ -28,7 +28,7 @@ function buildTable(data) {
 
 buildTable(tableData)
 
-//2. Handle clicks
+//2. Handle clicks 
 
 function handleClick() {
     var input = d3.select(`#datetime`).property(`value`); 
@@ -39,11 +39,11 @@ function handleClick() {
 
     var filteredData = tableData;
     if (input) {
-         filteredData = filteredData.filter(rowData => rowData.datetime === input)
-                                    .filter(rowData => rowData.city === d3.select(`#city`).property(`value`))
-                                    .filter(rowData => rowData.state === d3.select(`#state`).property(`value`))
-                                    .filter(rowData => rowData.country === d3.select(`#country`).property(`value`))
-                                    .filter(rowData => rowData.shape === d3.select(`#shape`).property(`value`));
+         filteredData = filteredData.filter(rowData => rowData.datetime === input || ! input ) //||! or empty (if value is not there, filter returns everything) => We are disabling the filter if its empty (by or not=||!). True return everything, False returns nothing, hence we need to add this "or not". If no value ignore the filter complitely
+                                    .filter(rowData => rowData.city === d3.select(`#city`).property(`value`) || ! d3.select(`#city`).property(`value`)) // command+D to highlight next 
+                                    .filter(rowData => rowData.state === d3.select(`#state`).property(`value`) || ! d3.select(`#state`).property(`value`))
+                                    .filter(rowData => rowData.country === d3.select(`#country`).property(`value`) || ! d3.select(`#country`).property(`value`))
+                                    .filter(rowData => rowData.shape === d3.select(`#shape`).property(`value`) || ! d3.select(`#shape`).property(`value`));
     } 
     buildTable(filteredData)
    
