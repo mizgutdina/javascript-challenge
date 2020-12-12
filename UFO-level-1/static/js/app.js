@@ -29,7 +29,7 @@ buildTable(tableData)
 
 //2. Handle clicks
 //Event 
-//Function Handle click
+//Function Handle click (got help from a tutor on this section)
 
 function handleClick() {
     var input = d3.select(`#datetime`).property(`value`); 

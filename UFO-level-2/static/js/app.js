@@ -32,23 +32,26 @@ buildTable(tableData)
 
 function handleClick() {
     var input = d3.select(`#datetime`).property(`value`); 
-    var inputCity = d3.select(`#city`).proverty(`value`);
-    var inputState = d3.select(`#state`).proverty(`value`);
-    var inputCountry = d3.select(`#country`).property(`value`);
-    var inputShape = d3.select(`#shape`).property(`value`);
+    //var inputCity = d3.select(`#city`).proverty(`value`);
+    // var inputState = d3.select(`#state`).proverty(`value`);
+    // var inputCountry = d3.select(`#country`).property(`value`);
+    // var inputShape = d3.select(`#shape`).property(`value`);
 
     var filteredData = tableData;
     if (input) {
-        filteredData = filteredData.filter(rowData => rowData.datetime === input);
+         filteredData = filteredData.filter(rowData => rowData.datetime === input)
+                                    .filter(rowData => rowData.city === d3.select(`#city`).property(`value`))
+                                    .filter(rowData => rowData.state === d3.select(`#state`).property(`value`))
+                                    .filter(rowData => rowData.country === d3.select(`#country`).property(`value`))
+                                    .filter(rowData => rowData.shape === d3.select(`#shape`).property(`value`));
     } 
     buildTable(filteredData)
-    // if (inputCity) {
-    //     filteredData = filteredData.filter(rowData => rowData.city === inputCity);
-    // }
-    // buildTable(filteredData)
+   
 }
 
 //3. Listen to changes
 
 var button = d3.selectAll(`#filter-btn`);
+//var form = d3.selectAll(`.form-control`)
 button.on(`click`, handleClick) 
+//form.on(`submit`, handleClick);
